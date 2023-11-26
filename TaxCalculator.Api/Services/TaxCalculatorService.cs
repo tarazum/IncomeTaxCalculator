@@ -14,6 +14,11 @@ namespace TaxCalculator.Api.Services
 
         public decimal CalculateTax(int annualSalary)
         {
+            if (annualSalary < 0)
+            {
+                throw new ArgumentException("Gross annual salary must be non-negative.");
+            }
+
             decimal taxPaid = 0;
 
             foreach (var band in _taxBandRepository.GetTaxBands())
