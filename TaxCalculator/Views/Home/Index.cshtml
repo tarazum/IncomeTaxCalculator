@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Income Tax Calculator</h1>
+
+    <div>
+        <label for="grossAnnualSalary">Gross Annual Salary:</label>
+        <input type="text" id="grossAnnualSalary" />
+        <button id="calculateButton">Calculate</button>
+    </div>
+
+    <div id="resultsSection" style="display:none;">
+
+        <label for="calculatedGrossAnnualSalary">Gross Annual Salary:</label>
+        <span id="calculatedGrossAnnualSalary"></span>
+
+        <label for="calculatedGrossMonthlySalary">Gross Monthly Salary:</label>
+        <span id="calculatedGrossMonthlySalary"></span>
+
+        <label for="calculatedNetAnnualSalary">Net Annual Salary:</label>
+        <span id="calculatedNetAnnualSalary"></span>
+
+        <label for="calculatedNetMonthlySalary">Net Monthly Salary:</label>
+        <span id="calculatedNetMonthlySalary"></span>
+
+        <label for="calculatedAnnualTaxPaid">Annual Tax Paid:</label>
+        <span id="calculatedAnnualTaxPaid"></span>
+
+        <label for="calculatedMonthlyTaxPaid">Monthly Tax Paid:</label>
+        <span id="calculatedMonthlyTaxPaid"></span>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#calculateButton').click(function () {
+                var grossAnnualSalary = $('#grossAnnualSalary').val();
+
+                // Make the AJAX request to the Web API
+                $.ajax({
+                    url: '/api/salary/calculate',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ GrossAnnualSalary: grossAnnualSalary }),
+                    success: function (result) {
+                        // Update the UI with the calculated results
+                        $('#calculatedGrossAnnualSalary').text(result.GrossAnnualSalary);
+                        $('#calculatedGrossMonthlySalary').text(result.GrossMonthlySalary);
+                        $('#calculatedNetAnnualSalary').text(result.NetAnnualSalary);
+                        $('#calculatedNetMonthlySalary').text(result.NetMonthlySalary);
+                        $('#calculatedAnnualTaxPaid').text(result.AnnualTaxPaid);
+                        $('#calculatedMonthlyTaxPaid').text(result.MonthlyTaxPaid);
+
+                        // Show the results section
+                        $('#resultsSection').show();
+                    },
+                    error: function () {
+                        // Handle error
+                        alert('Error calculating salary.');
+                    }
+                });
+            });
+        });
+    </script>
+}
