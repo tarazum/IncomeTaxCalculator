@@ -14,10 +14,14 @@ namespace TaxCalculator.Api.Services
 
         public SalaryDetails CalculateSalaryDetails(int grossAnnualSalary)
         {
+            if (grossAnnualSalary < 0)
+            {
+                throw new ArgumentException("Gross annual salary must be non-negative.");
+            }
+
             // Calculate tax once
             decimal annualTax = _taxCalculator.CalculateTax(grossAnnualSalary);
 
-            // Basic calculation without considering deductions or other factors
             decimal netAnnualSalary = grossAnnualSalary - annualTax;
             decimal grossMonthlySalary = (decimal)grossAnnualSalary / 12;
             decimal netMonthlySalary = netAnnualSalary / 12;
