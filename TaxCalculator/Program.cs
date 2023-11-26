@@ -1,3 +1,4 @@
+using TaxCalculator.Models;
 using TaxCalculator.Services;
 
 namespace TaxCalculator
@@ -31,6 +32,14 @@ namespace TaxCalculator
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            // Configure CORS with the variable
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("https://localhost:44301")
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            });
 
             app.UseAuthorization();
 

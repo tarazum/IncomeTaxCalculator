@@ -15,12 +15,12 @@ namespace TaxCalculator.Api.Controllers
             _salaryService = salaryService;
         }
 
-        [HttpPost]
-        public ActionResult<SalaryDetails> CalculateSalary([FromBody] int grossAnnualSalary)
+        [HttpPost(Name = "CalculateSalary")]
+        public SalaryDetails Post([FromBody] int grossAnnualSalary)
         {
             var salaryDetails = _salaryService.CalculateSalaryDetails(grossAnnualSalary);
 
-            return Ok(salaryDetails);
+            return salaryDetails;
         }
     }
 }

@@ -7,30 +7,54 @@
 
     <div>
         <label for="grossAnnualSalary">Gross Annual Salary:</label>
-        <input type="text" id="grossAnnualSalary" />
+        <input type="text" id="grossAnnualSalary" pattern="^[1-9]\d*$" title="Please enter a positive integer value" max="2147483647" />
         <button id="calculateButton">Calculate</button>
     </div>
 
-    <div id="resultsSection" style="display:none;">
+    <div id="resultsSection" class="container mt-4" style="display:none; border: 1px solid #ddd; padding: 15px; text-align: center;">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <label for="calculatedGrossAnnualSalary">Gross Annual Salary:</label>
+                <span id="calculatedGrossAnnualSalary" class="ml-2"></span>
+            </div>
+        </div>
 
-        <label for="calculatedGrossAnnualSalary">Gross Annual Salary:</label>
-        <span id="calculatedGrossAnnualSalary"></span>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <label for="calculatedGrossMonthlySalary">Gross Monthly Salary:</label>
+                <span id="calculatedGrossMonthlySalary" class="ml-2"></span>
+            </div>
+        </div>
 
-        <label for="calculatedGrossMonthlySalary">Gross Monthly Salary:</label>
-        <span id="calculatedGrossMonthlySalary"></span>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <label for="calculatedNetAnnualSalary">Net Annual Salary:</label>
+                <span id="calculatedNetAnnualSalary" class="ml-2"></span>
+            </div>
+        </div>
 
-        <label for="calculatedNetAnnualSalary">Net Annual Salary:</label>
-        <span id="calculatedNetAnnualSalary"></span>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <label for="calculatedNetMonthlySalary">Net Monthly Salary:</label>
+                <span id="calculatedNetMonthlySalary" class="ml-2"></span>
+            </div>
+        </div>
 
-        <label for="calculatedNetMonthlySalary">Net Monthly Salary:</label>
-        <span id="calculatedNetMonthlySalary"></span>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <label for="calculatedAnnualTaxPaid">Annual Tax Paid:</label>
+                <span id="calculatedAnnualTaxPaid" class="ml-2"></span>
+            </div>
+        </div>
 
-        <label for="calculatedAnnualTaxPaid">Annual Tax Paid:</label>
-        <span id="calculatedAnnualTaxPaid"></span>
-
-        <label for="calculatedMonthlyTaxPaid">Monthly Tax Paid:</label>
-        <span id="calculatedMonthlyTaxPaid"></span>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <label for="calculatedMonthlyTaxPaid">Monthly Tax Paid:</label>
+                <span id="calculatedMonthlyTaxPaid" class="ml-2"></span>
+            </div>
+        </div>
     </div>
+
 </div>
 
 
@@ -46,18 +70,18 @@
 
                 // Make the AJAX request to the Web API
                 $.ajax({
-                    url: apiUrl + '/api/salary/calculate',
+                    url: apiUrl + '/api/salary',
                     type: 'POST',
                     contentType: 'application/json',
-                    data: JSON.stringify({ GrossAnnualSalary: grossAnnualSalary }),
+                    data: grossAnnualSalary,
                     success: function (result) {
                         // Update the UI with the calculated results
-                        $('#calculatedGrossAnnualSalary').text(result.GrossAnnualSalary);
-                        $('#calculatedGrossMonthlySalary').text(result.GrossMonthlySalary);
-                        $('#calculatedNetAnnualSalary').text(result.NetAnnualSalary);
-                        $('#calculatedNetMonthlySalary').text(result.NetMonthlySalary);
-                        $('#calculatedAnnualTaxPaid').text(result.AnnualTaxPaid);
-                        $('#calculatedMonthlyTaxPaid').text(result.MonthlyTaxPaid);
+                        $('#calculatedGrossAnnualSalary').text(result.grossAnnualSalary);
+                        $('#calculatedGrossMonthlySalary').text(result.grossMonthlySalary);
+                        $('#calculatedNetAnnualSalary').text(result.netAnnualSalary);
+                        $('#calculatedNetMonthlySalary').text(result.netMonthlySalary);
+                        $('#calculatedAnnualTaxPaid').text(result.annualTaxPaid);
+                        $('#calculatedMonthlyTaxPaid').text(result.monthlyTaxPaid);
 
                         // Show the results section
                         $('#resultsSection').show();

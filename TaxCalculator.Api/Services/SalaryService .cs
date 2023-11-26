@@ -19,7 +19,7 @@ namespace TaxCalculator.Api.Services
 
             // Basic calculation without considering deductions or other factors
             decimal netAnnualSalary = grossAnnualSalary - annualTax;
-            decimal grossMonthlySalary = grossAnnualSalary / 12;
+            decimal grossMonthlySalary = (decimal)grossAnnualSalary / 12;
             decimal netMonthlySalary = netAnnualSalary / 12;
             decimal monthlyTaxPaid = annualTax / 12;
 

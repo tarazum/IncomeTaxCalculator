@@ -13,15 +13,21 @@ namespace TaxCalculator.Services
 
         public ApiSettings GetApiSettings()
         {
-            string? apiUrl = _configuration.GetSection("ApiSettings")["ApiUrl"];
+            var result = new ApiSettings();
+
+            var section = _configuration.GetSection("ApiSettings");
+            string? apiUrl = section["ApiUrl"];
             if (apiUrl != null)
             {
-                return new ApiSettings { ApiUrl = apiUrl };
+                result.ApiUrl = apiUrl;
             }
-            else 
-            { 
-                return new ApiSettings(); 
+            string? appOrigin = section["AppOrigin"];
+            if(appOrigin != null)
+            {
+                result.AppOrigin = appOrigin;
             }
+
+            return result;
         }
     }
 }
