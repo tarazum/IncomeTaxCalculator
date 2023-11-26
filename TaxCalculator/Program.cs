@@ -1,3 +1,5 @@
+using TaxCalculator.Services;
+
 namespace TaxCalculator
 {
     public class Program
@@ -8,6 +10,12 @@ namespace TaxCalculator
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // Register SettingsService
+            builder.Services.AddSingleton<SettingsService>();
+
+            // Register ApiSettings using the SettingsService
+            builder.Services.AddSingleton(provider => provider.GetRequiredService<SettingsService>().GetApiSettings());
 
             var app = builder.Build();
 

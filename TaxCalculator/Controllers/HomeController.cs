@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using TaxCalculator.Models;
 
@@ -7,15 +6,17 @@ namespace TaxCalculator.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApiSettings _apiSettings;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApiSettings apiSettings)
         {
-            _logger = logger;
+            _apiSettings = apiSettings ?? throw new ArgumentNullException(nameof(apiSettings));
         }
 
         public IActionResult Index()
         {
+            ViewBag.ApiUrl = _apiSettings.ApiUrl;
+
             return View();
         }
 
