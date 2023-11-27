@@ -1,6 +1,1 @@
-@TaxCalculator.Api_HostAddress = http://localhost:5020
-
-GET {{TaxCalculator.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
+@TaxCalculator.Api_HostAddress = http://localhost:44352
