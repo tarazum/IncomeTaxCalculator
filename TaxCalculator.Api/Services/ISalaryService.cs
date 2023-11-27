@@ -2,6 +2,6 @@
 {
     public interface ISalaryService
     {
-        SalaryDetails CalculateSalaryDetails(int grossAnnualSalary);
+        Task<SalaryDetails> CalculateSalaryDetails(int grossAnnualSalary);
     }
 }

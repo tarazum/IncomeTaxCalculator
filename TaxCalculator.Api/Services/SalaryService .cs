@@ -12,7 +12,7 @@ namespace TaxCalculator.Api.Services
             _taxCalculator = taxCalculator ?? throw new ArgumentNullException(nameof(taxCalculator));
         }
 
-        public SalaryDetails CalculateSalaryDetails(int grossAnnualSalary)
+        public async Task<SalaryDetails> CalculateSalaryDetails(int grossAnnualSalary)
         {
             if (grossAnnualSalary < 0)
             {
@@ -20,7 +20,7 @@ namespace TaxCalculator.Api.Services
             }
 
             // Calculate tax once
-            decimal annualTax = _taxCalculator.CalculateTax(grossAnnualSalary);
+            decimal annualTax = await _taxCalculator.CalculateTax(grossAnnualSalary);
 
             decimal netAnnualSalary = grossAnnualSalary - annualTax;
             decimal grossMonthlySalary = (decimal)grossAnnualSalary / 12;

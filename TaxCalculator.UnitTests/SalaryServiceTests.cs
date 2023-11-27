@@ -8,17 +8,17 @@ namespace TaxCalculator.UnitTests
         [Theory]
         [InlineData(10000, 833.33, 9000, 750, 1000.00, 83.33)]
         [InlineData(40000, 3333.33, 29000, 2416.67, 11000.00, 916.67)]
-        public void CalculateSalaryDetails_ReturnsCorrectResult(
+        public async Task CalculateSalaryDetails_ReturnsCorrectResult(
             int grossAnnualSalary, decimal grossMonthlySalary, decimal netAnnualSalary, decimal netMonthlySalary, decimal annualTaxPaid, decimal monthlyTaxPaid)
         {
             // Arrange
             var taxCalculatorMock = new Mock<ITaxCalculatorService>();
-            taxCalculatorMock.Setup(tc => tc.CalculateTax(It.IsAny<int>())).Returns(annualTaxPaid);
+            taxCalculatorMock.Setup(tc => tc.CalculateTax(It.IsAny<int>())).Returns(Task.FromResult(annualTaxPaid));
 
             var salaryService = new SalaryService(taxCalculatorMock.Object);
 
             // Act
-            var result = salaryService.CalculateSalaryDetails(grossAnnualSalary);
+            var result = await salaryService.CalculateSalaryDetails(grossAnnualSalary);
 
             // Assert
             Assert.NotNull(result);
@@ -31,17 +31,17 @@ namespace TaxCalculator.UnitTests
         }
 
         [Fact]
-        public void CalculateSalaryDetails_ThrowsException_ForNegativeSalary()
+        public async Task CalculateSalaryDetails_ThrowsException_ForNegativeSalary()
         {
             // Arrange
             var taxCalculatorMock = new Mock<ITaxCalculatorService>();
-            taxCalculatorMock.Setup(tc => tc.CalculateTax(It.IsAny<int>())).Returns(0);
+            taxCalculatorMock.Setup(tc => tc.CalculateTax(It.IsAny<int>())).Returns(Task.FromResult((decimal)0));
 
             var salaryService = new SalaryService(taxCalculatorMock.Object);
             var negativeSalary = -5000;
 
             // Act & Assert
-            var exception = Assert.Throws<ArgumentException>(() => salaryService.CalculateSalaryDetails(negativeSalary));
+            var exception = await Assert.ThrowsAsync<ArgumentException>(async () => await salaryService.CalculateSalaryDetails(negativeSalary));
             Assert.Equal("Gross annual salary must be non-negative.", exception.Message);
         }
     }

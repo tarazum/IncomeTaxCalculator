@@ -4,6 +4,6 @@ namespace TaxCalculator.Api.Repositories
 {
     public interface ITaxBandRepository
     {
-        List<TaxBand> GetTaxBands();
+        Task<List<TaxBand>> GetTaxBands();
     }
 }

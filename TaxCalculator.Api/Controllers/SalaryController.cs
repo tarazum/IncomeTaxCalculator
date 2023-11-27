@@ -16,9 +16,9 @@ namespace TaxCalculator.Api.Controllers
         }
 
         [HttpPost(Name = "CalculateSalary")]
-        public SalaryDetails Post([FromBody] int grossAnnualSalary)
+        public async Task<SalaryDetails> Post([FromBody] int grossAnnualSalary)
         {
-            var salaryDetails = _salaryService.CalculateSalaryDetails(grossAnnualSalary);
+            var salaryDetails = await _salaryService.CalculateSalaryDetails(grossAnnualSalary);
 
             return salaryDetails;
         }

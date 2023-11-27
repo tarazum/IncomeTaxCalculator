@@ -17,34 +17,35 @@ namespace TaxCalculator.UnitTests
         [InlineData(15000, 20, 3000)] // Example test case for Band B
         [InlineData(30000, 40, 12000)] // Example test case for Band C
         // Add more test cases as needed
-        public void CalculateTax_ReturnsCorrectResult(
+        public async Task CalculateTax_ReturnsCorrectResult(
             int annualSalary, int taxRate, int expectedTax)
         {
             // Arrange
             var taxBandRepositoryMock = new Mock<ITaxBandRepository>();
-            taxBandRepositoryMock.Setup(repo => repo.GetTaxBands()).Returns(new List<TaxBand>
+            var taxBands = new List<TaxBand>
             {
                 new TaxBand { LowerLimit = 0, UpperLimit = null, TaxRate = taxRate }
-            });
+            };
+            taxBandRepositoryMock.Setup(repo => repo.GetTaxBands()).Returns(Task.FromResult(taxBands));
 
             var taxCalculator = new TaxCalculatorService(taxBandRepositoryMock.Object);
 
             // Act
-            var result = taxCalculator.CalculateTax(annualSalary);
+            var result = await taxCalculator.CalculateTax(annualSalary);
 
             // Assert
             Assert.Equal(expectedTax, result);
         }
 
         [Fact]
-        public void CalculateTax_ThrowsException_ForNegativeSalary()
+        public async Task CalculateTax_ThrowsException_ForNegativeSalary()
         {
             // Arrange
             var taxBandRepositoryMock = new Mock<ITaxBandRepository>();
             var taxCalculator = new TaxCalculatorService(taxBandRepositoryMock.Object);
 
             // Act & Assert
-            var exception = Assert.Throws<ArgumentException>(() => taxCalculator.CalculateTax(-5000));
+            var exception = await Assert.ThrowsAsync<ArgumentException>(async () => await taxCalculator.CalculateTax(-5000));
             Assert.Equal("Gross annual salary must be non-negative.", exception.Message);
         }
     }

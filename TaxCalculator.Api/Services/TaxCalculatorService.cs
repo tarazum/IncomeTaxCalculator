@@ -12,7 +12,7 @@ namespace TaxCalculator.Api.Services
             _taxBandRepository = taxBandRepository ?? throw new ArgumentNullException(nameof(taxBandRepository));
         }
 
-        public decimal CalculateTax(int annualSalary)
+        public async Task<decimal> CalculateTax(int annualSalary)
         {
             if (annualSalary < 0)
             {
@@ -21,7 +21,7 @@ namespace TaxCalculator.Api.Services
 
             decimal taxPaid = 0;
 
-            foreach (var band in _taxBandRepository.GetTaxBands())
+            foreach (var band in await _taxBandRepository.GetTaxBands())
             {
                 if (annualSalary <= band.LowerLimit)
                     continue;
