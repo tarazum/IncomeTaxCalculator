@@ -1,6 +1,6 @@
-﻿using TaxCalculator.Models;
+﻿using TaxCalculator.WebApi.Models;
 
-namespace TaxCalculator.Api.Repositories
+namespace TaxCalculator.WebApi.Repositories
 {
     public class TaxBandRepository : ITaxBandRepository
     {

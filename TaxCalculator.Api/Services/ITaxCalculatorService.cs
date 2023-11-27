@@ -1,4 +1,4 @@
-﻿namespace TaxCalculator.Api.Services
+﻿namespace TaxCalculator.WebApi.Services
 {
     public interface ITaxCalculatorService
     {

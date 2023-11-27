@@ -1,6 +1,7 @@
-﻿using TaxCalculator.Models;
+﻿using TaxCalculator.Web.Models;
+using TaxCalculator.WebApi.Models;
 
-namespace TaxCalculator.Services
+namespace TaxCalculator.Web.Services
 {
     public class SettingsService
     {

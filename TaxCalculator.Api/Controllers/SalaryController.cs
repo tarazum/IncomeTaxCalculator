@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using TaxCalculator.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using TaxCalculator.WebApi.Models;
+using TaxCalculator.WebApi.Services;
 
-namespace TaxCalculator.Api.Controllers
+namespace TaxCalculator.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

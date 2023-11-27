@@ -1,5 +1,5 @@
 using Moq;
-using TaxCalculator.Api.Services;
+using TaxCalculator.WebApi.Services;
 
 namespace TaxCalculator.UnitTests
 {

@@ -1,4 +1,4 @@
-﻿namespace TaxCalculator.Models
+﻿namespace TaxCalculator.Web.Models
 {
     public class ApiSettings
     {

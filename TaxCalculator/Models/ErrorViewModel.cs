@@ -1,4 +1,4 @@
-namespace TaxCalculator.Models
+namespace TaxCalculator.WebApi.Models
 {
     public class ErrorViewModel
     {

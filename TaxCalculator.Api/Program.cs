@@ -1,9 +1,8 @@
+using TaxCalculator.WebApi.Models;
+using TaxCalculator.WebApi.Repositories;
+using TaxCalculator.WebApi.Services;
 
-using TaxCalculator.Api.Repositories;
-using TaxCalculator.Api.Services;
-using TaxCalculator.Models;
-
-namespace TaxCalculator.Api
+namespace TaxCalculator.WebApi
 {
     public class Program
     {

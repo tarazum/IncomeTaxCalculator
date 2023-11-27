@@ -1,12 +1,7 @@
 ﻿using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaxCalculator.Api.Repositories;
-using TaxCalculator.Api.Services;
-using TaxCalculator.Models;
+using TaxCalculator.WebApi.Repositories;
+using TaxCalculator.WebApi.Services;
+using TaxCalculator.WebApi.Models;
 
 namespace TaxCalculator.UnitTests
 {

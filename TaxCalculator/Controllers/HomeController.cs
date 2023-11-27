@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using TaxCalculator.Models;
+using TaxCalculator.Web.Models;
+using TaxCalculator.WebApi.Models;
 
-namespace TaxCalculator.Controllers
+namespace TaxCalculator.Web.Controllers
 {
     public class HomeController : Controller
     {

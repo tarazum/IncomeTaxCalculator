@@ -1,7 +1,6 @@
-using TaxCalculator.Models;
-using TaxCalculator.Services;
+using TaxCalculator.Web.Services;
 
-namespace TaxCalculator
+namespace TaxCalculator.Web
 {
     public class Program
     {
