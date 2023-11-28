@@ -21,7 +21,7 @@ namespace TaxCalculator.WebApi.Services
 
             decimal taxPaid = 0;
 
-            foreach (var band in await _taxBandRepository.GetTaxBands())
+            foreach (var band in await _taxBandRepository.GetTaxBandsAsync())
             {
                 if (annualSalary <= band.LowerLimit)
                     continue;

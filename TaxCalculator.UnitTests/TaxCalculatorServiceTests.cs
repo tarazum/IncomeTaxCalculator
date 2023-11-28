@@ -17,11 +17,12 @@ namespace TaxCalculator.UnitTests
         {
             // Arrange
             var taxBandRepositoryMock = new Mock<ITaxBandRepository>();
-            var taxBands = new List<TaxBand>
+            var taxBands = new TaxBand[]
             {
-                new TaxBand { LowerLimit = 0, UpperLimit = null, TaxRate = taxRate }
-            };
-            taxBandRepositoryMock.Setup(repo => repo.GetTaxBands()).Returns(Task.FromResult(taxBands));
+                new() { LowerLimit = 0, UpperLimit = null, TaxRate = taxRate }
+            }.AsEnumerable();
+
+            taxBandRepositoryMock.Setup(repo => repo.GetTaxBandsAsync()).Returns(Task.FromResult(taxBands));
 
             var taxCalculator = new TaxCalculatorService(taxBandRepositoryMock.Object);
 
