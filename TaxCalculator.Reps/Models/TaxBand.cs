@@ -1,6 +1,6 @@
-﻿namespace TaxCalculator.WebApi.Models
+﻿namespace TaxCalculator.Reps.Models
 {
-    public class TaxBand
+    public class TaxBandDto
     {
         public int LowerLimit { get; set; }
         public int? UpperLimit { get; set; }

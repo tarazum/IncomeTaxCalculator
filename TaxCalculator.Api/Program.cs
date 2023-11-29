@@ -1,6 +1,9 @@
-using TaxCalculator.WebApi.Models;
-using TaxCalculator.WebApi.Repositories;
-using TaxCalculator.WebApi.Services;
+using Microsoft.EntityFrameworkCore;
+using TaxCalculator.Db.Context;
+using TaxCalculator.Reps.Interfaces;
+using TaxCalculator.Reps.Repositories;
+using TaxCalculator.Services.Interfaces;
+using TaxCalculator.Services.Services;
 
 namespace TaxCalculator.WebApi
 {
@@ -12,6 +15,13 @@ namespace TaxCalculator.WebApi
 
             // Add services to the container.
             builder.Services.AddControllers();
+
+            // Register DbContext
+            builder.Services.AddDbContext<TaxCalculatorDbContext>(options =>
+            {
+                // Configure your database connection string here
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
 
             // Register your services and repositories here
             builder.Services.AddScoped<ITaxBandRepository, TaxBandRepository>();

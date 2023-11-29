@@ -1,7 +1,7 @@
-﻿using TaxCalculator.WebApi.Models;
-using TaxCalculator.WebApi.Repositories;
+﻿using TaxCalculator.Reps.Interfaces;
+using TaxCalculator.Services.Interfaces;
 
-namespace TaxCalculator.WebApi.Services
+namespace TaxCalculator.Services.Services
 {
     public class TaxCalculatorService : ITaxCalculatorService
     {

@@ -1,7 +1,7 @@
-﻿using TaxCalculator.WebApi.Repositories;
-using TaxCalculator.WebApi.Models;
+﻿using TaxCalculator.Services.Interfaces;
+using TaxCalculator.Services.Models;
 
-namespace TaxCalculator.WebApi.Services
+namespace TaxCalculator.Services.Services
 {
     public class SalaryService : ISalaryService
     {
@@ -12,7 +12,7 @@ namespace TaxCalculator.WebApi.Services
             _taxCalculator = taxCalculator ?? throw new ArgumentNullException(nameof(taxCalculator));
         }
 
-        public async Task<SalaryDetails> CalculateSalaryDetails(int grossAnnualSalary)
+        public async Task<SalaryDetailsModel> CalculateSalaryDetails(int grossAnnualSalary)
         {
             if (grossAnnualSalary < 0)
             {
@@ -27,7 +27,7 @@ namespace TaxCalculator.WebApi.Services
             decimal netMonthlySalary = netAnnualSalary / 12;
             decimal monthlyTaxPaid = annualTax / 12;
 
-            return new SalaryDetails
+            return new SalaryDetailsModel
             {
                 GrossAnnualSalary = grossAnnualSalary,
                 GrossMonthlySalary = Math.Round(grossMonthlySalary, 2),

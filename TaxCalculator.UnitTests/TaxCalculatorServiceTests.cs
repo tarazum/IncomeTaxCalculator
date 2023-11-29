@@ -1,7 +1,7 @@
 ﻿using Moq;
-using TaxCalculator.WebApi.Repositories;
-using TaxCalculator.WebApi.Services;
-using TaxCalculator.WebApi.Models;
+using TaxCalculator.Reps.Models;
+using TaxCalculator.Reps.Interfaces;
+using TaxCalculator.Services.Services;
 
 namespace TaxCalculator.UnitTests
 {
@@ -17,7 +17,7 @@ namespace TaxCalculator.UnitTests
         {
             // Arrange
             var taxBandRepositoryMock = new Mock<ITaxBandRepository>();
-            var taxBands = new TaxBand[]
+            var taxBands = new TaxBandDto[]
             {
                 new() { LowerLimit = 0, UpperLimit = null, TaxRate = taxRate }
             }.AsEnumerable();

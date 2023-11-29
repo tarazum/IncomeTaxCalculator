@@ -8,6 +8,10 @@ namespace TaxCalculator.Db.Context
     {
         public DbSet<TaxBand> TaxBands { get; set; }
 
+        public TaxCalculatorDbContext(DbContextOptions<TaxCalculatorDbContext> options) : base(options)
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var configuration = new ConfigurationBuilder()

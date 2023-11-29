@@ -1,6 +1,6 @@
-﻿namespace TaxCalculator.WebApi.Models
+﻿namespace TaxCalculator.Services.Models
 {
-    public class SalaryDetails
+    public class SalaryDetailsModel
     {
         public decimal GrossAnnualSalary { get; set; }
         public decimal GrossMonthlySalary { get; set; }
