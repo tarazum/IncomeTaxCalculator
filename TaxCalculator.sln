@@ -7,13 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.Web", "TaxCal
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.WebApi", "TaxCalculator.Api\TaxCalculator.WebApi.csproj", "{8EA8659C-83D8-4503-B462-29F26778473C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.UnitTests", "TaxCalculator.UnitTests\TaxCalculator.UnitTests.csproj", "{D6050FFF-3624-4CC9-9AEB-4351CEE954BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.Services.UnitTests", "TaxCalculator.UnitTests\TaxCalculator.Services.UnitTests.csproj", "{D6050FFF-3624-4CC9-9AEB-4351CEE954BE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.Db", "TaxCalculator.Db\TaxCalculator.Db.csproj", "{EDBD9AB2-3BB2-40B0-88FC-7B5A14B33B26}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.Services", "TaxCalculator.Services\TaxCalculator.Services.csproj", "{372A7CBB-72D8-42BA-9570-E477F3BFDC52}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.Reps", "TaxCalculator.Reps\TaxCalculator.Reps.csproj", "{C71C90B7-6717-4FCF-83B6-F84AF8AF182B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxCalculator.IntegrationTests", "TaxCalculator.IntegrationTests\TaxCalculator.IntegrationTests.csproj", "{CA8074F0-B80E-4E20-88D9-2ECB493A668B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{C71C90B7-6717-4FCF-83B6-F84AF8AF182B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C71C90B7-6717-4FCF-83B6-F84AF8AF182B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C71C90B7-6717-4FCF-83B6-F84AF8AF182B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA8074F0-B80E-4E20-88D9-2ECB493A668B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA8074F0-B80E-4E20-88D9-2ECB493A668B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA8074F0-B80E-4E20-88D9-2ECB493A668B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA8074F0-B80E-4E20-88D9-2ECB493A668B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
