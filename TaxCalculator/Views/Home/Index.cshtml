@@ -67,24 +67,47 @@
                 toastr["info"]("Wait a second...", "Income Tax Calclator");
 
                 var grossAnnualSalary = $('#grossAnnualSalary').val();
-
+                // Create a SalaryRequest object
+                var salaryRequest = {
+                    GrossAnnualSalary: grossAnnualSalary
+                    // Add other properties here if needed
+                };
                 // Make the AJAX request to the Web API
                 $.ajax({
                     url: apiUrl + '/api/salary',
                     type: 'POST',
                     contentType: 'application/json',
-                    data: grossAnnualSalary,
+                    data: JSON.stringify(salaryRequest),
                     success: function (result) {
-                        // Update the UI with the calculated results
-                        $('#calculatedGrossAnnualSalary').text(result.grossAnnualSalary);
-                        $('#calculatedGrossMonthlySalary').text(result.grossMonthlySalary);
-                        $('#calculatedNetAnnualSalary').text(result.netAnnualSalary);
-                        $('#calculatedNetMonthlySalary').text(result.netMonthlySalary);
-                        $('#calculatedAnnualTaxPaid').text(result.annualTaxPaid);
-                        $('#calculatedMonthlyTaxPaid').text(result.monthlyTaxPaid);
+                        if (result.isOk)
+                        {
+                            var data = result.data;
+                            // Update the UI with the calculated results
+                            $('#calculatedGrossAnnualSalary').text(data.grossAnnualSalary);
+                            $('#calculatedGrossMonthlySalary').text(data.grossMonthlySalary);
+                            $('#calculatedNetAnnualSalary').text(data.netAnnualSalary);
+                            $('#calculatedNetMonthlySalary').text(data.netMonthlySalary);
+                            $('#calculatedAnnualTaxPaid').text(data.annualTaxPaid);
+                            $('#calculatedMonthlyTaxPaid').text(data.monthlyTaxPaid);
 
-                        // Show the results section
-                        $('#resultsSection').show();
+                            // Show the results section
+                            $('#resultsSection').show();
+                        }
+                        else{
+                            var data = 0;
+                            // Update the UI with the calculated results
+                            $('#calculatedGrossAnnualSalary').text(data);
+                            $('#calculatedGrossMonthlySalary').text(data);
+                            $('#calculatedNetAnnualSalary').text(data);
+                            $('#calculatedNetMonthlySalary').text(data);
+                            $('#calculatedAnnualTaxPaid').text(data);
+                            $('#calculatedMonthlyTaxPaid').text(data);
+
+                            // Hide the results section
+                            $('#resultsSection').hide();
+
+                            toastr["error"](result.message, "Income Tax Calclator")
+                        }
                     },
                     error: function () {
                         // Handle error

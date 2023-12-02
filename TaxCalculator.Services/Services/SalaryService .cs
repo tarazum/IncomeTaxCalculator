@@ -5,6 +5,8 @@ namespace TaxCalculator.Services.Services
 {
     public class SalaryService : ISalaryService
     {
+        public const int MonthsPerYear = 12;
+
         private readonly ITaxCalculatorService _taxCalculator;
 
         public SalaryService(ITaxCalculatorService taxCalculator)
@@ -23,9 +25,9 @@ namespace TaxCalculator.Services.Services
             decimal annualTax = await _taxCalculator.CalculateTax(grossAnnualSalary);
 
             decimal netAnnualSalary = grossAnnualSalary - annualTax;
-            decimal grossMonthlySalary = (decimal)grossAnnualSalary / 12;
-            decimal netMonthlySalary = netAnnualSalary / 12;
-            decimal monthlyTaxPaid = annualTax / 12;
+            decimal grossMonthlySalary = (decimal)grossAnnualSalary / MonthsPerYear;
+            decimal netMonthlySalary = netAnnualSalary / MonthsPerYear;
+            decimal monthlyTaxPaid = annualTax / MonthsPerYear;
 
             return new SalaryDetailsModel
             {

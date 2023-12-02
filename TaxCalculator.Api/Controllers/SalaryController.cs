@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaxCalculator.Services.Interfaces;
-using TaxCalculator.Services.Models;
+using TaxCalculator.WebApi.Models;
 
 namespace TaxCalculator.WebApi.Controllers
 {
@@ -16,11 +16,26 @@ namespace TaxCalculator.WebApi.Controllers
         }
 
         [HttpPost(Name = "CalculateSalary")]
-        public async Task<SalaryDetailsModel> Post([FromBody] int grossAnnualSalary)
+        public async Task<SalaryResponse> Post([FromBody] SalaryRequest request)
         {
-            var salaryDetails = await _salaryService.CalculateSalaryDetails(grossAnnualSalary);
+            var response = new SalaryResponse()
+            {
+                IsOk = false
+            };
+            try
+            {
+                var salaryDetails = await _salaryService.CalculateSalaryDetails(request.GrossAnnualSalary);
+                response.IsOk = true;
+                response.Data = salaryDetails;
+            }
+            catch (Exception e)
+            {
+                response.IsOk = false;
+                response.Message = e.Message;
+                //log it: e.ToString()
+            }
 
-            return salaryDetails;
+            return response;
         }
     }
 }
