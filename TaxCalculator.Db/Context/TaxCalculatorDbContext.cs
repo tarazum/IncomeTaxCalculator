@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TaxCalculator.Db.Models;
 
 namespace TaxCalculator.Db.Context
 {
-    public class TaxCalculatorDbContext : DbContext
+    public class TaxCalculatorDbContext : IdentityDbContext<ApplicationUser>  // Inherit from IdentityDbContext instead of DbContext
     {
         public DbSet<TaxBand> TaxBands { get; set; }
 

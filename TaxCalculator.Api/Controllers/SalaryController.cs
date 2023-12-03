@@ -4,6 +4,9 @@ using TaxCalculator.WebApi.Models;
 
 namespace TaxCalculator.WebApi.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class SalaryController : ControllerBase

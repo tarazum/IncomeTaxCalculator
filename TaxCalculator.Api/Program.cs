@@ -4,6 +4,8 @@ using TaxCalculator.Reps.Interfaces;
 using TaxCalculator.Reps.Repositories;
 using TaxCalculator.Services.Interfaces;
 using TaxCalculator.Services.Services;
+using Microsoft.AspNetCore.Identity;
+using TaxCalculator.Db.Models;
 
 namespace TaxCalculator.WebApi
 {
@@ -22,6 +24,9 @@ namespace TaxCalculator.WebApi
                 // Configure your database connection string here
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+            // Register Identity
+            builder.Services.AddDefaultIdentity<ApplicationUser>()
+                .AddEntityFrameworkStores<TaxCalculatorDbContext>();
 
             // Register your services and repositories here
             builder.Services.AddScoped<ITaxBandRepository, TaxBandRepository>();
@@ -50,7 +55,7 @@ namespace TaxCalculator.WebApi
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             });
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
